@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Hangman Game</title>
+		<link href=hangmanStyle.css rel='stylesheet'>
+	</head>
+	<body>
+		<p style=font-size:x-large>HANGMAN</p>
+		<p style=font-size:large>VANILLA JAVASCRIPT HANGMAN GAME</p>
+		<p>Use the alphabet below to guess the word</p>
+		<div id=alphabet></div>
+		<p>Steven Universe Character Name</p>
+		<span id=word></span>
+		<p id=totLives>
+			<span>You have </span>
+			<span id=lives>10</span>
+			<span id=spanLives> lives</span>
+		</p>
+		<p id=message></p>
+		<canvas id=draw></canvas>
+		<button id=reset onclick=reset()>Play Again</button>
+		
+		<script>
+			let alpha = document.getElementById('alphabet');
+			let wordDiv = document.getElementById('word');
+			let lives = document.getElementById('lives');
+			let totLives = document.getElementById('totLives');
+			let spanLives = document.getElementById('spanLives');
+			let message = document.getElementById('message');
+			let canvas = document.getElementById('draw');
+			let ctx = canvas.getContext('2d');
+			let names = ['Steven-Universe', 'Garnet', 'Peridot', 'Pearl', 'Lapis-Lazuli', 'Amethyst', 'Connie-Maheswaran', 			'Stevonnie', 'Sadie-Miller', 'Greg-Universe', 'Alexandrite', 'Kiki-Pizza', 'Nanefua-Pizza', 'Bill-Dewey', 'Ronaldo-Fryman', 'Sapphire', 'Ruby', 'Lion', 'Lars', 'Jasper', 'Bismuth', 'Cookie-Cat', 'Harold-Smile', 'Pumpkin', 'Kevin', 'Jamie', 'Rose-Quartz', 'Rhodonite', 'Rutile-twins', 'Jenny-Pizza', 'Kofi-Pizza', 'Buck-Dewey', 'Malachite', 'Marty', 'Mr-Friman', 'Nephrite', 'Obsidian', 'Onion', 'Opal', 'Padparadscha', 'Pebbles', 'Peedee-Fryman', 'Priyanka-Maheswaran', 'Purple-puma', 'Blue-Diamond', 'Pink-Diamond', 'Yellow-Diamond', 'White-Diamond', 'Sour-Cream', 'Spinel'];
+			var name;
+			var word;
+			var clickedLetters = [];
+			let length = names.length;
+			let over = false;
+			
+			
+			// for loop colocar todas as letras do alfabeto como botão dentro do div
+			for (let i = 0, a = 65; i < 26; i++) {
+				let letter = document.createElement('button');
+				let c = String.fromCharCode(a+i);
+				
+				letter.setAttribute('class', 'letters');
+				letter.setAttribute('id', c);
+				letter.innerHTML = c;
+				
+				alpha.appendChild(letter);
+				// Se alguma letra for clicada, chamará a função
+				letter.addEventListener('click', function() {
+					clickedLetter(letter);
+				});
+			}
+			
+			reset();
+			
+			function reset() {
+				// The index of the chosen name
+				let i = Math.floor(Math.random() * length);
+				name = names[i].toUpperCase();
+				// Total letters of the word
+				let totLetters = name.length;
+				// If has a dash in the name
+				let dash = name.indexOf('-');
+				for (let l of clickedLetters) {
+					console.log(l);
+					document.getElementById(l).classList.remove('clicked');
+				}
+				// Reset the word, letters that was clicked and lives
+				word = [];
+				clickedLetters = [];
+				lives.innerHTML = 10;
+				// Let the Lives be visible and insert them on body
+				totLives.style.display = 'block';
+				totLives.insertBefore(lives, spanLives);
+				// The game is not over
+				over = false;
+				// Clean message
+				message.innerHTML = '';
+				// Clean the draw
+				ctx.clearRect(0, 0, 200, 150);
+				
+				// Procurar - colocar resto como _
+				// If dont have - else
+				for (let f = 0; f < totLetters; f++) {
+					if (dash == f) {
+						word.push('-');
+						continue;
+					}
+					word.push('_');
+				}
+				
+				console.log(word, name, totLetters);
+				setWord();
+			}
+			
+			function clickedLetter(letter) {
+				// Letra clicada
+				let l = letter.getAttribute('id');
+				let re = new RegExp(l, 'g');
+				let matches = name.match(re);
+				
+				// If letter was clicked already or the game is over
+				if (clickedLetters.includes(l) || over) {
+					console.log('saiu');
+					return;
+				} else {
+					clickedLetters.push(l);
+					letter.classList.add('clicked');
+				}
+
+				if (matches != null) {
+					for (let i = 0, len = matches.length, min = 0; i < len; i++) {
+						// Encontrar a primeira match na palavra e colocar na word
+						let idL = name.indexOf(l, min);
+						min = idL+1;
+						word[idL] = name[idL];
+					}	
+				} else {
+					lives.innerHTML--;
+					totLives.insertBefore(lives, spanLives);
+					// Send the total lives to know what to draw
+					draw(lives.innerHTML);
+				}
+				
+				// If all letters are visible, the game is over and the player won
+				if (!word.includes('_')) {
+					message.innerHTML = 'You Won!';
+					totLives.style.display = 'none';
+					over = true;
+				} else if (lives.innerHTML == '0') {
+					message.innerHTML = 'Game Over';
+					totLives.style.display = 'none';
+					over = true;
+				}
+				
+				setWord();
+			}
+			
+			function setWord() {
+				wordDiv.innerHTML = '';
+				for (let w of word) {
+					wordDiv.innerHTML += w;
+				}
+			}
+			
+			function draw(i) {
+				i = parseInt(i);
+				ctx.strokeStyle = 'white';
+				switch(i) {
+					case 9:
+						// The beggining of the line
+						ctx.moveTo(20, 140);
+						// The end (width, height)
+						ctx.lineTo(180, 140);
+						// Make the line
+						ctx.stroke();
+						break;
+					case 8:
+						ctx.moveTo(30, 15);
+						ctx.lineTo(30, 140);
+						ctx.stroke();
+						break;
+					case 7:
+						ctx.moveTo(20, 20);
+						ctx.lineTo(100, 20);
+						ctx.stroke();
+						break;
+					case 6:
+						ctx.moveTo(100, 20);
+						ctx.lineTo(100, 40);
+						ctx.stroke();
+						break;
+					case 5:
+						ctx.beginPath();
+						// width, height, radius, startangle, endangle (2*pi make a circle)
+						ctx.arc(100, 50, 10, 0, 2 * Math.PI);
+						// To make the arc/curve
+						ctx.stroke();
+						break;
+					case 4:
+						ctx.moveTo(100, 60);
+						ctx.lineTo(100, 100);
+						ctx.stroke();
+						break;
+					case 3:
+						ctx.moveTo(100, 85);
+						ctx.lineTo(120, 60);
+						ctx.stroke();
+						break;
+					case 2:
+						ctx.moveTo(100, 85);
+						ctx.lineTo(80, 60);
+						ctx.stroke();
+						break;
+					case 1:
+						ctx.moveTo(100, 100);
+						ctx.lineTo(120, 125);
+						ctx.stroke();
+						break;
+					case 0:
+						ctx.moveTo(100, 100);
+						ctx.lineTo(80, 125);
+						ctx.stroke();
+						break;
+					default: 
+						console.log('???');
+						break;
+				}
+			}
+		</script>
+	</body>
+</html>

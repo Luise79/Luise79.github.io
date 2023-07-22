@@ -6,7 +6,8 @@
 	  	
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-		<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap" rel="stylesheet">	</head>
+		<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap" rel="stylesheet">
+	</head>
 	<body>
 		<div class="container">
 			<div id="count">0</div>
@@ -33,7 +34,6 @@
 			<input class="button numbers" id=clean type=button value=C>
 
 			<input class="button" id=equal type=button value='='>
-			
 		</div>
 		
 		<script>
@@ -68,71 +68,71 @@
 			let printCount = document.getElementById("count");	
       
       document.addEventListener('keydown', function(event) {
-          console.log(event.key);
-          let key = event.key;
-          switch(key) {
-            case "1": 
-              key = "one";
-              break;
-            case "2":
-              key = "two";
-              break;
-            case "3":
-              key = "three";
-              break;
-            case "4":
-              key = "four";
-              break;
-            case "5":
-              key = "five";
-              break;
-            case "6":
-              key = "six";
-              break;
-            case "7":
-              key = "seven";
-              break;
-            case "8":
-              key = "eight";
-              break;
-            case "9":
-              key = "nine";
-              break;
-            case "0":
-              key = "zero";
-              break;
-            case ".":
-              key = "dot";
-              break;
-            case "/":
-              key = "division";
-              break;
-            case "*":
-              key = "times";
-              break;
-            case "-":
-              key = "minus";
-              break;
-            case "+":
-              key = "plus";
-              break;
-            case "Enter":
-              key = "equal";
-              break;
-            case "Delete":
-              key = "clean";
-              break;
-            default: 
-              return;
-          }
-          console.log(key);
-          document.getElementById(key).click();
+				console.log(event.key);
+				let key = event.key;
+				switch(key) {
+					case "1": 
+						key = "one";
+						break;
+					case "2":
+						key = "two";
+						break;
+					case "3":
+						key = "three";
+						break;
+					case "4":
+						key = "four";
+						break;
+					case "5":
+						key = "five";
+						break;
+					case "6":
+						key = "six";
+						break;
+					case "7":
+						key = "seven";
+						break;
+					case "8":
+						key = "eight";
+						break;
+					case "9":
+						key = "nine";
+						break;
+					case "0":
+						key = "zero";
+						break;
+					case ".":
+						key = "dot";
+						break;
+					case "/":
+						key = "division";
+						break;
+					case "*":
+						key = "times";
+						break;
+					case "-":
+						key = "minus";
+						break;
+					case "+":
+						key = "plus";
+						break;
+					case "Enter":
+						key = "equal";
+						break;
+					case "Delete":
+						key = "clean";
+						break;
+					default: 
+						return;
+				}
+				console.log(key);
+				document.getElementById(key).click();
       });
 
 			
 			// Get the whole number
 			function getNumbers() {
-          console.log(this.value);
+        console.log(this.value);
 				// Clean the total numbers because have the last answer
 				if (multipleC) {
 					console.log("hey");

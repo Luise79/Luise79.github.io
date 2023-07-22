@@ -1,0 +1,144 @@
+/* width no body quer dizer o tanto de espaço que pode ser usado
+   margin o primeiro é o top e o auto se refere aos lados 
+   font-family o nome da fonte e senão der certo uma vc pode por
+várias de plano B, e o último é o nome da família, neste caso 
+eu linkei a font eu peguei do font.google.com 
+   letter-spacing o espaço entre as letras
+   font-size o tamanho da fonte px, em, rem 
+px: varia o tamanho do elemento pelo tamanho da tela ou papel 
+em: varia pelo tamanho da fonte definida pelo navegador (geralmente 16px)
+ou a fonte definida pela tag pai (ex: body) 
+100% = 1em = tamanho definido, ex 125% = 1.25em = 1.25em*tamanho definido 
+rem: se baseia pelo tamanho definido pela raiz (geralment html) 
+ex font-size no html é 14px e num div é 1.2rem = 16.8px pq 14*1.2rem
+moz mozilla ms internet explorer webkit chrome, user-select permiti ou n 
+selecionar o texto, as opções são auto, none, element, text*/
+body {
+  width: 400px;
+  margin: 4% auto;
+  font-family: 'Open Sans', sans-serif;
+  letter-spacing: 3px;
+  font-size: 1.8rem;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+
+}
+
+
+/* border-radius: o quanto que a ponta fica redonda 
+gap é o tanto de espaço entre as colunas/linhas 
+some display values and the respective meaning 
+inline: display as an inline element, height and width doesnt work
+block: start on a new line, takes all width it can 
+grid: mostra um elemento grade de nivel bloco 
+flex: mostra um bloco elemento flexivel, parecido com grid (coisa de linha só é com ele)
+inline-block: é um elemento inline mas pode mudar altura e largura 
+none: the element is completely removed
+initial: set this property to its default value, 
+no elemento q foi escrito n aparece mas nos seus filhos sim
+inherit: inherit this property from its parent element 
+precisa do webkit pra atualizaões mais velhas 
+box-shadow: tamanho da sombra da coluna, depois da linha, depois o tanto de blur e spread
+quanto que ele borra e espalha, a cor e opacidade */
+.container {
+  border-radius: 1px;
+  column-gap: 15px;
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+  grid-row-gap: 15px;
+	grid-template-rows: auto auto auto auto auto auto;
+  padding: 20px;
+  -webkit-box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.2);
+}
+
+/* transition: property, duration, timing function, delay
+a propriedade que você quer mudar, a duração, o jeito, o tanto que demora
+timing functions: linear: mesma velocidade do começo ao fim
+ease: devagar no começo e no fim o meio é rápido
+ease-in: devagar no começo, ease-out: devagar no fim
+ease-in-out: devagar no começo e fim
+cubic-bezier(n,n,n,n): define your own function */
+#count { 
+	border: 1px solid #ddd; 
+	border-radius: 1px;
+	grid-column-start: 1;
+	grid-column-end: 5;
+	margin-top: 5px;
+	margin-bottom: 10px;
+  max-height: 43px;
+  max-width: 338px;
+  overflow-y: hidden;
+	overflow-x: scroll hidden;
+	padding: 10px;
+	text-align: right;
+  font-size: 2rem;
+	transition: all .2s ease-in-out;
+}
+
+#count:hover {
+	border: 1px solid #bbb;
+	box-shadow: inset 0px 1px 4px 0px rgba(0, 0, 0, 0.2);
+}
+
+.operators {
+	 border: 1px solid #bbb;
+	 border-radius: 1px;
+	 background-color: #ddd;
+	 transition: border-color .2s ease-in-out, background-color .2s, box-shadow .2s;
+}
+
+.operators:hover {
+	 background-color: #ddd;
+   -webkit-box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.2);
+   box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.2);
+   border-color: #aaa;
+
+}
+
+.numbers {
+	 border: 1px solid #ddd;
+	 border-radius: 1px;
+	 background-color: #f9f9f9;
+	 transition: border-color .2s ease-in-out, background-color .2s, box-shadow .2s;
+}
+
+.numbers:hover {
+	border-color: #bbb;
+	background-color: #f1f1f1;
+  -webkit-box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.2);
+}
+
+#equal {
+	grid-column-start: 4;
+	grid-column-end: 5;
+	grid-row-start: 3;
+	grid-row-end: 7;
+	border: 1px solid #3079ED;
+	border-radius: 1px;
+	color: #FFF;
+	background-color: #4d90fe;
+	transition: all .2s ease-in-out;
+}
+
+#equal:hover {
+	border-color: #1857BB;
+	background-color: #307CF9;
+	-webkit-box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.2);
+	box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.2);
+}
+
+.button {
+	font-size: 1.5rem;
+	padding: 13px;
+	text-align: center;
+	cursor: pointer;
+}
+
+input {
+	font-family: 'Open Sans', sans-serif;
+}
+
+

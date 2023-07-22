@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Stopwatch</title>
+		<link rel="stylesheet" href="stopwatchStyle.css">
+	</head>
+	<body>
+		<p>STOPWATCH</p>
+		<p>VANILLA JAVASCRIPT STOPWATCH</p>
+		<div>
+			<span id="mins">00</span>
+			<span>:</span>
+			<span id="secs">00</span>
+		</div>
+		<div>
+			<button onclick="start()">Start</button>
+			<button onclick="stop()">Stop</button>
+			<button onclick="reset()">Reset</button>
+		</div>
+
+		<script>
+			
+			// Check if its already counting
+			let counting = false;
+			// Check if already reached the limit (60min)
+			let end = false;
+			
+			var i;
+			// Seconds/Minutes decimals and unidades
+			let secs = 0;
+			let mins = 0;
+			
+			// Count the time		
+			function count() {
+				secs++;
+				if (secs < 10) {
+					document.getElementById("secs").innerHTML = "0" + secs;
+				} else if (secs < 60) {
+					document.getElementById("secs").innerHTML = secs;
+				} else {
+					secs = 0;
+					mins++;
+					document.getElementById("secs").innerHTML = "0" + secs;
+					if (mins < 9) {
+						document.getElementById("mins").innerHTML = "0" + mins;
+					} else {
+						document.getElementById("mins").innerHTML = mins;
+					} 
+					
+					if (mins == 60) {
+						end = true;
+						stop();
+					}
+				}
+			}
+			
+			
+			// Start counting
+			function start() {
+				// Stop if its already counting or reached the limit
+				if (counting || end) {
+					return;
+				} else {
+					counting = true;
+					i = setInterval(count, 1000);
+				}
+			}
+			
+			// Stop the counting
+			function stop() {
+				counting = false;
+				clearInterval(i);
+			}
+			
+			// Reset the counting
+			function reset() {
+				secs = mins = 0;
+				end = false;
+				
+				stop();
+				document.getElementById("mins").innerHTML = "00";
+				document.getElementById("secs").innerHTML = "00";
+			}
+			
+		</script>
+	</body>
+
+</html>

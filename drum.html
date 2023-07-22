@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>JavaScript Drum Kit</title>
+		<link rel="stylesheet" href="drumStyle.css"> 
+	</head>
+	<body>
+		<div class=container>
+			<div id=parentTitle>
+				<p id='title'>JavaScript Drum Kit</p>
+			</div>
+			
+			<img id=drum src=https://raw.githubusercontent.com/ArunMichaelDsouza/javascript-30-course/master/src/01-javascript-drum-kit/img/drum-kit.png alt=drum style="height: 500px">
+			<div id=crash>
+				<img src="https://raw.githubusercontent.com/ArunMichaelDsouza/javascript-30-course/master/src/01-javascript-drum-kit/img/crash.png" alt="Crash cymbal" style="height: 50px;">
+			</div>
+			<div id=hihat>
+				<img src="https://raw.githubusercontent.com/ArunMichaelDsouza/javascript-30-course/master/src/01-javascript-drum-kit/img/hihat-top.png" alt="Hi Hat cymbal" style="height: 47px;">
+			</div>
+		
+			<div class="column">
+				<div id=keyMapping >Key Mapping</div>
+				<div class="row">
+					<div class=buttom>E</div>
+					<div>Crash</div>
+				</div>
+				<div class="row">
+					<div class=buttom>R</div>
+					<div>Ride</div>
+				</div>
+				<div class="row">
+					<div class=buttom>F</div>
+					<div>Floor tom</div>
+				</div>
+				<div class="row">
+					<div class=buttom>G</div>
+					<div>Mid tom</div>
+				</div>
+				<div class="row">
+					<div class=buttom>H</div>
+					<div>High tom</div>
+				</div>
+				<div class="row">
+					<div class=buttom>V</div>
+					<div>Kick</div>
+				</div>
+				<div class="row">
+					<div class=buttom>B</div>
+					<div>Kick</div>
+				</div>
+				<div class="row">
+					<div class=buttom>J</div>
+					<div>Snare</div>
+				</div>
+				<div class="row">
+					<div class=buttom>I</div>
+					<div>Hi-hat Open</div>
+				</div>
+				<div class="row">
+					<div class=buttom>K</div>
+					<div>Hi-hat Closed</div>
+				</div>
+			</div>
+			<div id='e' class="buttom">E</div>
+			<div id='r' class="buttom">R</div>
+			<div id='f' class="buttom">F</div>
+			<div id='g' class="buttom">G</div>
+			<div id='h' class="buttom">H</div>
+			<div id='v' class="buttom">V</div>
+			<div id='b' class="buttom">B</div>
+			<div id='j' class="buttom">J</div>
+			<div id='i' class="buttom">I</div>
+			<div id='k' class="buttom">K</div>
+		</div>
+		
+		
+	
+		<audio id="audioE" controls>
+			<source src="https://raw.githubusercontent.com/ArunMichaelDsouza/javascript-30-course/master/src/01-javascript-drum-kit/sounds/crash.wav" type="audio/wav">
+		</audio>
+		<audio id="audioR" controls>
+			<source src="https://raw.githubusercontent.com/ArunMichaelDsouza/javascript-30-course/master/src/01-javascript-drum-kit/sounds/ride.wav" type="audio/wav">
+		</audio>
+		<audio id="audioF" controls>
+			<source src="https://raw.githubusercontent.com/ArunMichaelDsouza/javascript-30-course/master/src/01-javascript-drum-kit/sounds/tom-low.wav" type="audio/wav">
+		</audio>
+		<audio id="audioG" controls>
+			<source src="https://raw.githubusercontent.com/ArunMichaelDsouza/javascript-30-course/master/src/01-javascript-drum-kit/sounds/tom-mid.wav" type="audio/wav">
+		</audio>
+		<audio id="audioH" controls>
+			<source src="https://raw.githubusercontent.com/ArunMichaelDsouza/javascript-30-course/master/src/01-javascript-drum-kit/sounds/tom-high.wav" type="audio/wav">
+		</audio>
+		<audio id="audioV" controls>
+			<source src="https://raw.githubusercontent.com/ArunMichaelDsouza/javascript-30-course/master/src/01-javascript-drum-kit/sounds/kick.wav" type="audio/wav">
+		</audio>
+		<audio id="audioB" controls>
+			<source src="https://raw.githubusercontent.com/ArunMichaelDsouza/javascript-30-course/master/src/01-javascript-drum-kit/sounds/kick.wav" type="audio/wav">
+		</audio>
+		<audio id="audioJ" controls>
+			<source src="https://raw.githubusercontent.com/ArunMichaelDsouza/javascript-30-course/master/src/01-javascript-drum-kit/sounds/snare.wav" type="audio/wav">
+		</audio>
+		<audio id="audioI" controls>
+			<source src="https://raw.githubusercontent.com/ArunMichaelDsouza/javascript-30-course/master/src/01-javascript-drum-kit/sounds/hihat-open.wav" type="audio/wav">
+		</audio>
+		<audio id="audioK" controls>
+			<source src="https://raw.githubusercontent.com/ArunMichaelDsouza/javascript-30-course/master/src/01-javascript-drum-kit/sounds/hihat-close.wav" type="audio/wav">
+		</audio>
+		
+		<script>			
+      document.addEventListener("keydown", function(event) {
+				f(event);
+			});
+			
+			function f(event) {
+				let a;
+				let crash = document.getElementById('crash');
+				let hihat = document.getElementById('hihat');
+				if (event.keyCode == 69) {
+					a = document.getElementById("audioE");
+					var letter = document.getElementById('e');
+				} else if (event.keyCode == 82) {
+					a = document.getElementById("audioR");
+					var letter = document.getElementById('r');
+				} else if (event.keyCode == 70) {
+					a = document.getElementById("audioF");
+					var letter = document.getElementById('f');
+				} else if (event.keyCode == 71) {
+					a = document.getElementById("audioG");
+					var letter = document.getElementById('g');
+				} else if (event.keyCode == 72) {
+					a = document.getElementById("audioH");
+					var letter = document.getElementById('h');
+				} else if (event.keyCode == 86) {
+					a = document.getElementById("audioV");
+					var letter = document.getElementById('v');
+				} else if (event.keyCode == 66) {
+					a = document.getElementById("audioB");
+					var letter = document.getElementById('b');
+				} else if (event.keyCode == 74) {
+					a = document.getElementById("audioJ");
+					var letter = document.getElementById('j');
+				} else if (event.keyCode == 73) {
+					a = document.getElementById("audioI");
+					var letter = document.getElementById('i');
+				} else if (event.keyCode == 75) {
+					a = document.getElementById("audioK");
+					var letter = document.getElementById('k');
+				} 
+				
+				if (event.keyCode == 69 || event.keyCode == 82) {
+					crash.style.transform = 'rotate(0deg)';
+					let timeOut = setTimeout(function() {crash.style.transform = 
+						'rotate(-8deg)'}, 200);
+				} else if (event.keyCode == 75) {
+					hihat.style.top = '186px';
+					let timeOut = setTimeout(function() {hihat.style.top = '183px'}
+																	 , 200);
+				}
+				
+				letter.style.padding = '6px';
+				letter.style.paddingBottom = '7px';
+				setTimeout(function() {
+					letter.style.padding = '5px';
+					letter.style.paddingBottom = '6px';
+				}, 200);
+				
+				if (a.paused) {
+					a.play();
+				} else {
+					a.currentTime = 0;
+					a.play();
+				}
+				/* TODO mudar de sprite, fazer som */
+			}
+			
+    </script>
+		
+  </body>
+</html>

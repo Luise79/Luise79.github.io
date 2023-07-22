@@ -1,0 +1,65 @@
+body {
+	background-color: #242424;
+	margin: 0px;
+	font-family: 'Raleway', sans-serif;
+}
+
+.container {
+	background-color: #3aa699;
+	color: #e4e4e4;
+	padding: 5px;
+	text-align: center;
+	font-family: sans-serif;
+}
+
+#rgbNumber {
+	font-size: 50px;
+}
+
+.menu {
+	background-color: #e4e4e4;
+	display: flex;
+	justify-content: space-between;
+	padding-inline: 400px;
+	text-align: center;
+	font-size: medium;
+	height: auto;
+	cursor: default;
+}
+#reset, #message, #easy, #hard {
+	border: none;
+	background-color: inherit;
+	color: #3aa699;
+	display: inline-block;
+	padding: 5px;
+}
+
+#reset:hover, #easy:hover, #hard:hover {
+	background-color: #3aa699;
+	color: #e4e4e4;
+}
+
+#easy.selected, #hard.selected {
+	background-color: #3aa699;
+	color: #e4e4e4;
+}
+
+#mode {
+	display: flex;
+	justify-content: center;
+}
+
+#colors {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	flex-wrap: wrap;
+	margin-inline: 430px;
+}
+
+.color {
+	border-radius: 20px;
+	height: 150px;
+	width: 150px;
+	margin-top: 20px;
+}

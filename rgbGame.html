@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>RGB Game</title>
+		<link href=rgbGameStyle.css rel='stylesheet'>
+		<link href='https://fonts.googleapis.com/css?family=Raleway:300' rel='stylesheet' type='text/css'>	
+	</head>
+	<body>
+		<div class='container'>
+			<h1>THE GREAT</h1>
+			<span id='rgbNumber'></span>
+			<h1>GUESSING GAME</h1>
+		</div>
+		<div class='menu'>
+			<span id='reset' onclick='main()'>New Colors</span>
+			<span id='message'></span>
+			<div id=mode>
+				<span class='selected' id='easy' onclick=selecting(this)>Easy</span>
+				<span id='hard' onclick=selecting(this)>Hard</span>
+			</div>
+		</div>
+		<div id=colors></div>
+		
+		<script>
+			let easy = document.getElementById('easy');
+			let hard = document.getElementById('hard');
+			let colorsDiv = document.getElementById('colors');
+			let totColors = 3;
+			let rightId;
+			let won = false;
+			
+			main();
+			
+			
+			// When some color is clicked call function
+			document.getElementById('colors').addEventListener('click', function() {
+				checkColor();
+			});
+			
+			function main() {
+				/* Quando uma cor for clicada se for a certa a cor dela deve ser 
+					em todos os divs e no container e uma mensagem de correct 
+					se for a errada o div desaparece (ou muda para a cor de fundo) 
+					e manda mensagem de try again */
+				
+				// Get the colors
+				let colors = reset();
+				
+				
+				// Create div colors that can be selected
+				for (let i = 0; i < totColors; i++) {
+					// Criar div com cor aleatoria 
+					let colorDiv = document.createElement('div');
+					colorDiv.setAttribute('class', 'color');
+					colorDiv.setAttribute('id', i);
+					
+					colorDiv.style.backgroundColor = 'RGB(' + colors[i][0] + ', ' +
+						colors[i][1] + ', ' + colors[i][2] + ')';
+					
+					colorsDiv.appendChild(colorDiv);
+				}
+				
+				checkColor();
+				
+			}
+			
+			
+			function reset() {
+				/* Criar um numero random rgb (0 a 255 3x) 
+				Um ficara como titulo e os outros 2/5 devem ser espalhados
+				*/
+
+				won = false;
+				// If already has colors in display remove them
+				while (colorsDiv.hasChildNodes()) {
+					colorsDiv.removeChild(document.getElementsByClassName('color')[0]);
+				}
+
+				// Make random colors
+				let colors = [];
+				for (let i = 0; i < totColors; i++) {
+					let color = [];
+					for (let f = 0; f < 3; f++) {
+						let c = Math.floor(Math.random() * 255);
+						color.push(c);
+					}
+					colors.push(color);
+				}
+				
+				rightId = Math.floor(Math.random() * totColors);
+		
+				document.getElementById('message').innerHTML = '';
+				document.getElementById('reset').innerHTML = 'New Colors';
+				
+				return colors;
+			}
+			
+			function selecting(button) {
+				// Select the mode and call the main function
+				let id = button.getAttribute('id');
+				
+				button.setAttribute('class', 'selected');
+				
+				if (id == 'easy') {
+					totColors = 3;
+					
+					hard.removeAttribute('class');
+				} else if (id == 'hard') {
+					totColors = 6;
+					
+					easy.removeAttribute('class');
+				}
+
+				main();
+			}
+			
+			
+			// TODO descobrir pq o event ta acumulando e como finalizar depois de vencer
+			
+			// Check if the correct color was clicked, send messages either way
+			function checkColor(t) {
+				// pegar cor desse e colocar nos outros
+				let rightColor = colorsDiv.children[rightId];
+				let rgb = rightColor.style.backgroundColor.toUpperCase();
+				
+				document.getElementById('rgbNumber').innerHTML = rgb;
+
+				console.log(rightId);
+				for (let i = 0; i < totColors; i++) {
+					document.getElementById(i).addEventListener('click', function() {
+						clickedColor(rgb, i);
+					});
+				}
+			}
+			
+			function clickedColor(rgb, i) {
+				if (won) {
+					return;
+				}
+				// When right color is clicked
+				if (i == rightId) {
+					document.getElementById('message').innerHTML = 'Correct';
+					document.getElementById('reset').innerHTML = 'Play Again';
+
+					for (let f = 0; f < totColors; f++) {
+						colorsDiv.children[f].style.backgroundColor = rgb;
+					}
+
+					won = true;
+					console.log(won, 'deu');
+					return;
+				} else {
+					// Colocar a cor do background
+					colorsDiv.children[i].style.backgroundColor = '#242424';
+					document.getElementById('message').innerHTML = 'Try Again';
+				}
+			}
+			
+		</script>
+	</body>
+</html>

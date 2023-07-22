@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Calculator</title>
+		<link rel="stylesheet" href="calculatorStyle.css"> 
+	  	
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap" rel="stylesheet">	</head>
+	<body>
+		<div class="container">
+			<div id="count">0</div>
+			
+			<input class="button operators" id=plus type=button value=+>
+			<input class="button operators" id=minus type=button value=->
+			<input class="button operators" id=times type=button value=&times;>
+			<input class="button operators" id=division type=button value=&divide;>
+			
+			<input class="button numbers" id=seven type=button value=7>
+			<input class="button numbers" id=eight type=button value=8>
+			<input class="button numbers" id=nine type=button value=9>
+			
+			<input class="button numbers" id=four type=button value=4>
+			<input class="button numbers" id=five type=button value=5>
+			<input class="button numbers" id=six type=button value=6>
+			
+			<input class="button numbers" id=one type=button value=1>
+			<input class="button numbers" id=two type=button value=2>
+			<input class="button numbers" id=three type=button value=3>
+			
+			<input class="button numbers" id=zero type=button value=0>
+			<input class="button numbers" id=dot type= button value=.>
+			<input class="button numbers" id=clean type=button value=C>
+
+			<input class="button" id=equal type=button value='='>
+			
+		</div>
+		
+		<script>
+			
+			let totNum = "";
+			let totSym = [];
+			let count = [];
+			let c = "";
+			let multipleC = false;
+
+			document.getElementById("one").addEventListener("click", getNumbers);
+			document.getElementById("two").addEventListener("click", getNumbers);
+			document.getElementById("three").addEventListener("click", getNumbers);
+			document.getElementById("four").addEventListener("click", getNumbers);
+			document.getElementById("five").addEventListener("click", getNumbers);
+			document.getElementById("six").addEventListener("click", getNumbers);
+			document.getElementById("seven").addEventListener("click", getNumbers);
+			document.getElementById("eight").addEventListener("click", getNumbers);
+			document.getElementById("nine").addEventListener("click", getNumbers);
+			document.getElementById("zero").addEventListener("click", getNumbers);
+			document.getElementById("dot").addEventListener("click", getNumbers);
+
+			document.getElementById("plus").addEventListener("click", getSymbols);
+			document.getElementById("minus").addEventListener("click", getSymbols);
+			document.getElementById("times").addEventListener("click", getSymbols);
+			document.getElementById("division").addEventListener("click", getSymbols);
+			
+			document.getElementById("equal").addEventListener("click", finalAnswer);
+			
+			document.getElementById("clean").addEventListener("click", clean);
+			
+			let printCount = document.getElementById("count");	
+      
+      document.addEventListener('keydown', function(event) {
+          console.log(event.key);
+          let key = event.key;
+          switch(key) {
+            case "1": 
+              key = "one";
+              break;
+            case "2":
+              key = "two";
+              break;
+            case "3":
+              key = "three";
+              break;
+            case "4":
+              key = "four";
+              break;
+            case "5":
+              key = "five";
+              break;
+            case "6":
+              key = "six";
+              break;
+            case "7":
+              key = "seven";
+              break;
+            case "8":
+              key = "eight";
+              break;
+            case "9":
+              key = "nine";
+              break;
+            case "0":
+              key = "zero";
+              break;
+            case ".":
+              key = "dot";
+              break;
+            case "/":
+              key = "division";
+              break;
+            case "*":
+              key = "times";
+              break;
+            case "-":
+              key = "minus";
+              break;
+            case "+":
+              key = "plus";
+              break;
+            case "Enter":
+              key = "equal";
+              break;
+            case "Delete":
+              key = "clean";
+              break;
+            default: 
+              return;
+          }
+          console.log(key);
+          document.getElementById(key).click();
+      });
+
+			
+			// Get the whole number
+			function getNumbers() {
+          console.log(this.value);
+				// Clean the total numbers because have the last answer
+				if (multipleC) {
+					console.log("hey");
+					clean();
+					printCount.innerHTML = "";
+					multipleC = false;
+				}
+				// If the var already have dot
+				if (this.value == "." && totNum.indexOf(".") > 0) {
+					return;
+				} else {
+					totNum += this.value;
+				}
+				
+				// If the first element is a point, put 0 in the beggining
+				if (totNum.length == 1 && totNum[0] == ".") {
+					totNum = "0" + totNum;
+					c += "0";
+				}
+				
+				c += this.value;
+				printCount.innerHTML = c;
+			}
+			
+			
+			// Get the symbols, finish the numbers, put on the array in order
+			function getSymbols() {
+        console.log(this.value);
+				// If the last char its not a number
+				if (totNum == "") {
+					// If dont have any number in the count
+					if (count.length < 1) {
+						return;
+					} else {
+						// Rewhite the symbol
+						count.pop();
+						count.push(this.value);
+						
+						totSym.pop();
+						totSym.push(this.value);
+						
+						c = c.slice(0, c.length-1);
+						c += this.value;
+					}
+				} else {
+					if (totNum.endsWith(".")) {
+						totNum.replace(/.$/g, "");
+					}
+					
+					if (multipleC) {
+						c += totNum;
+						printCount.innerHTML = "";
+					}
+					// Put the number and symbol in the array
+					count.push(Number(totNum));
+					count.push(this.value);
+					// Clean the total digits and sum the total symbols
+					totNum = "";
+					totSym.push(this.value);
+					
+					c += this.value;
+				}
+				printCount.innerHTML = c;
+				
+				multipleC = false;
+				
+				console.log(totNum, count);
+			}
+			
+			// When pressed equal
+			function finalAnswer() {
+				// Verify if its empty
+				if (count.length < 1) {
+					return;
+				} else if (totNum == "") {
+					// If end with a symbol
+					return;
+				} else {
+					// Put the last number in the array
+					count.push(Number(totNum));
+					totNum = "";
+				}
+				
+				let answer = 0;
+				
+				let firstSym = 0;
+				let secondSym = 0;
+				
+				// Count how many operators are and put them in order
+				for (let i = 0, n = totSym.length; i < n; i++) {
+					totSym[i] == "×" || totSym[i] == "÷" ? firstSym++ : secondSym++;
+				}
+				
+				// The operator who must have to be solved first, / *
+				for (let i = 0, n = 0; i < firstSym; i++) {
+					// Find the index of the operators
+					let iTimes = totSym.indexOf("×");
+					let iSlash = totSym.indexOf("÷");
+					
+					/* Check if the operator is in the array, 
+					else the other one must be and put the index of the symbol 
+					that made the count to put the answer there */
+					if (iTimes < 0) {
+						n = count.indexOf("÷");
+						answer = count[n-1] / count[n+1];
+						delete totSym[iSlash];
+					} else if (iSlash < 0) {
+						n = count.indexOf("×");
+						answer = count[n-1] * count[n+1];
+						delete totSym[iTimes];
+					} else if (iTimes < iSlash) {
+						n = count.indexOf("×");
+						answer = count[n-1] * count[n+1];
+						delete totSym[iTimes];
+					} else if (iSlash < iTimes) {
+						n = count.indexOf("÷");
+						answer = count[n-1] / count[n+1];
+						delete totSym[iSlash];
+					}
+					
+					// The new count with the updated expression
+					count = newCount(n, answer);
+				}
+				
+				// The operator who must have to be solved second, + -
+				for (let i = 0, n = 0; i < secondSym; i++) {
+					// Find the index of the operators
+					let iPlus = totSym.indexOf("+");
+					let iMinus = totSym.indexOf("-");
+					
+					/* If just have one type of operator or find whom the least
+					do the count and remove the symbol that was calculated 
+					from the index of the Total Symbols */
+					if (iPlus < 0) {
+						n = count.indexOf("-");
+						answer = count[n-1] - count[n+1];
+						delete totSym[iMinus];
+					} else if (iMinus < 0) {
+						n = count.indexOf("+");
+						answer = count[n-1] + count[n+1];
+						delete totSym[iPlus];
+					} else if (iPlus < iMinus) {
+						n = count.indexOf("+");
+						answer = count[n-1] + count[n+1];
+						delete totSym[iPlus];
+					} else if (iMinus < iPlus) {
+						n = count.indexOf("-");
+						answer = count[n-1] - count[n+1];
+						delete totSym[iMinus];
+					}
+					
+					// The new count with the updated expression
+					count = newCount(n, answer);
+				}
+
+				let finalAnswer = count[0];
+				clean();
+				totNum += finalAnswer;
+				printCount.innerHTML = answer;
+				
+				multipleC = true;
+			}
+			
+			function clean() {
+				count = [];
+				totSym = [];
+				totNum = "";
+				
+				c = "";
+				printCount.innerHTML = c;
+				
+				answer = 0;
+				printCount.innerHTML = answer;
+			}
+			
+			function newCount(n, answer) {
+				// The new count
+				let nCount = [];
+				for (let i = 0, l = count.length; i < l; i++) {
+					if (i == n-1) {
+						nCount.push(answer);
+						i += 2;
+					} else {
+						nCount.push(count[i]);
+					}
+				}
+				return nCount;
+			}
+			
+		</script>
+	</body>
+</html>

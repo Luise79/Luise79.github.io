@@ -1,0 +1,22 @@
+.video {
+	width: 100%;
+	max-width: 800px;
+	margin: auto;
+}
+
+.video-area {
+	position: relative;
+	height: 0px;
+	background-color: #CCC;
+	padding: 0px 0px 56.25%;
+}
+
+.video-area iframe {
+	position: absolute;
+	top: 0px;
+	bottom: 0px;
+	left: 0px;
+	height: 100%;
+	width: 100%;
+	border: 0px;
+}

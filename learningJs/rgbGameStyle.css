@@ -4,23 +4,29 @@ body {
 	font-family: 'Raleway', sans-serif;
 }
 
+h1 {
+	font-weight: normal;
+}
+
 .container {
+	width: 100vw;
 	background-color: #3aa699;
 	color: #e4e4e4;
-	padding: 5px;
+	padding: 5px 0px;
 	text-align: center;
 	font-family: sans-serif;
+	font-size: 1rem;
 }
 
 #rgbNumber {
-	font-size: 50px;
+	font-size: 3rem;
 }
 
 .menu {
+	width: 100vw;
 	background-color: #e4e4e4;
 	display: flex;
-	justify-content: space-between;
-	padding-inline: 400px;
+	justify-content: space-evenly;
 	text-align: center;
 	font-size: medium;
 	height: auto;
@@ -32,6 +38,7 @@ body {
 	color: #3aa699;
 	display: inline-block;
 	padding: 5px;
+	font-size: 1.3rem;
 }
 
 #reset:hover, #easy:hover, #hard:hover {
@@ -52,14 +59,37 @@ body {
 #colors {
 	display: flex;
 	flex-direction: row;
-	justify-content: space-between;
+	justify-content: space-evenly;
 	flex-wrap: wrap;
-	margin-inline: 430px;
+	margin-inline: 5px;
 }
 
 .color {
 	border-radius: 20px;
-	height: 150px;
-	width: 150px;
-	margin-top: 20px;
+	height: 10rem;
+	width: 10rem;
+	margin: 10px 20px;
+}
+
+@media (max-width: 299px) {
+	html {
+		font-size: 10px;
+	}
+}
+
+@media (min-width: 300px) and (max-width: 799px) {
+	html {
+		font-size: 16px;
+	}
+}
+
+@media (min-width: 800px) {
+	html {
+		font-size: 14px;
+	}
+}
+@media (min-width: 1600px) {
+	html {
+		font-size: 20px;
+	}
 }

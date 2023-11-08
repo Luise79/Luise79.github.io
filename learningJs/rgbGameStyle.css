@@ -57,10 +57,10 @@ h1 {
 }
 
 #colors {
-	display: flex;
-	flex-direction: row;
-	justify-content: space-evenly;
-	flex-wrap: wrap;
+	display: grid;
+	justify-content: center;
+	column-gap: 2%;
+	grid-template-columns: auto auto auto;
 	margin-inline: 5px;
 }
 
@@ -71,15 +71,33 @@ h1 {
 	margin: 10px 20px;
 }
 
-@media (max-width: 299px) {
+@media (max-width: 359px) {
+	html {
+		font-size: 14px;
+	}
+	.color {
+		height: 5rem;
+		width: 5rem;
+	}
+	#colors {
+		grid-template-columns: auto;
+	}
+
+}
+
+@media (min-width: 360px) and (max-width: 499px) {
 	html {
 		font-size: 10px;
 	}
+	.color {
+		height: 8rem;
+		width: 8rem;
+	}
 }
 
-@media (min-width: 300px) and (max-width: 799px) {
+@media (min-width: 500px) and (max-width: 800px) {
 	html {
-		font-size: 16px;
+		font-size: 11px;
 	}
 }
 

@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Memory Game</title>
+		<link href=pairsGameStyle.css rel='stylesheet'>
+		
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Nunito+Sans&display=swap" rel="stylesheet">		
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+	</head>
+	<body>
+		
+		<div id=miniBoard>
+			<p id=title>Best three times</p>
+			<table>
+				<tr>
+					<th></th>
+					<th>First</th>
+					<th>Second</th>
+					<th>Third</th>
+				</tr>
+				<tr id=easy>
+					<th>Easy</th>
+					<td></td>
+					<td></td>
+					<td></td>
+				</tr>
+				<tr id=med>
+					<th>Medium</th>
+					<td></td>
+					<td></td>
+					<td></td>
+				</tr>
+				<tr id=hard>
+					<th>Hard</th>
+					<td></td>
+					<td></td>
+					<td></td>
+				</tr>
+			</table>
+		</div>
+		<button id=restart>Play Again</button>
+		<div id=container>
+			<p id=title>JAVASCRIPT PAIRS GAME</p>
+			<span id=time></span>
+			<div class='flip-container' id=cards></div>
+		</div>
+		
+		<script>
+			var cards = document.getElementById('cards');
+			var curTime = document.getElementById('time');
+			var trEasy = document.getElementById('easy');
+			var trMed = document.getElementById('med');
+			var trHard = document.getElementById('hard');
+			var button = document.getElementById('restart');
+			
+			var intervalId;
+			var beggining = false;
+			var secs = 0;
+			var ms = 0;
+			let level = 3;
+			var easyTimers = [];
+			var medTimers = [];
+			var hardTimers = [];
+			// The numbers of pairs of cards on the games
+			var games = [4, 8, 8, 16, 16, 16];
+			/* Card's color (the first four are the colors of the diamonds 
+			from steven universe and the rest are characters that I also like) */
+			
+			var colors = ['#ff3b99', '#0053ff', '#ffdc20', '#eaeaea', '#89ff53', '#ff0449',
+										'#791dc4', '#1ed6cf', '#ff8623', '#d6623e', '#991c50', '#0c8888', 
+									  '#50c878', '#497a26', '#5c747d', '#ffc12e'];
+			
+			main();
+			
+			function main() {
+				reset();
+				getCards();
+				button.style.display = 'none';
+			}
+			
+			// Create and insert the cards on the page
+			function getCards() {
+				let randomColors = [];
+				let selectedCards = [];
+				// Make pairs of cards based on the current level of the game
+				for (let i = 0; i < games[level]*2; i++) {
+					let r = getRandom(randomColors);
+					randomColors.push(r);
+					// Create the card element
+					let card = document.createElement('div');
+					card.setAttribute('class', 'flipper');
+					card.classList.add('card');
+					card.setAttribute('id', i);
+
+					cards.appendChild(card);
+					// Create the front and back from the card
+					let front = document.createElement('canvas');
+					let back = document.createElement('div');
+					
+					front.setAttribute('class', 'front');
+					back.setAttribute('class', 'back');
+					
+					back.style.backgroundColor = colors[r];
+										
+					card.appendChild(front);
+					card.appendChild(back);
+					// Draw the front of the card (a diamond)
+					draw(front);
+					
+					card.addEventListener('click', function() {
+						selectedCards = clickedCards(this, selectedCards);
+					});
+				}
+			}
+			
+			// Reset the timer and delete the current cards
+			function reset() {
+				beggining = false;
+				curTime.innerHTML = '00:00';
+				secs = 0;
+				ms = 0;
+				
+				while(cards.hasChildNodes()) {
+					cards.removeChild(cards.children[0]);
+				}
+				
+			}
+			
+			// When the card is clicked count the time, check if its a pair and change the level9765
+			function clickedCards(card, selecteds) {
+				// When the level beggin, start the counting
+				if (!beggining) {
+					intervalId = setInterval(countingTime, 10, secs, ms);
+					beggining = true;
+				}
+				// Return if the card was selected already
+				if (card.classList[1] == 'selected') {
+					return selecteds;
+				}
+				
+				selecteds.push(card);
+				card.classList.add('selected');
+				// If two cards were selecteds, compare them
+				if (selecteds.length == 2) {
+					let a = selecteds[0].getElementsByClassName('back')[0].style.backgroundColor;
+					let b = selecteds[1].getElementsByClassName('back')[0].style.backgroundColor;
+
+					// If they're equals 
+					if (a == b) {
+						for (let i of selecteds) {
+							i.classList.add('winner');
+						}
+						
+						// Check if found out all cards
+						let children = cards.childNodes;
+						let over = true;
+						for (let child of children) {
+							if (!child.classList.contains('winner')) {
+								over = false;
+								break;
+							}
+						}
+						// If the user passed the level
+						if (over) {
+							// Stop timer
+							clearInterval(intervalId);
+							// Get the score based on the level difficulty because of the number of cards
+							switch(level) {
+								case 0:
+									easyTimers = getScores(easyTimers, trEasy);
+									break;
+								case 1: 
+								case 2:
+									medTimers = getScores(medTimers, trMed);
+									break;
+								case 3:
+								case 4:
+								case 5:
+									hardTimers = getScores(hardTimers, trHard);
+									break;
+								default:
+									console.log('Something goes wrong with the switch');
+							}
+							
+							// Change the level
+							level++;
+							// If there's game yet do it again else game over
+							level < games.length ? setTimeout(main, 1000) : setTimeout(gameOver, 1000);
+						}
+					} else {
+						setTimeout(removeClass, 1000, selecteds);
+					}
+					selecteds = [];
+				}
+
+				return selecteds;
+			}
+			
+			// Draw in the front card a diamond
+			function draw(element) {
+				let ctx = element.getContext('2d');
+				
+				ctx.moveTo(150, 15);
+				ctx.lineTo(280, 75);
+				ctx.lineTo(150, 140);
+				ctx.lineTo(30, 75);
+				ctx.lineTo(150, 15);
+				
+				//ctx.fillStyle = '#a19fae';
+				ctx.fillStyle = '#5F8E99';
+				ctx.fill();
+				
+				ctx.stroke();
+			}
+			
+			// Generate random number, if already exist a pair do it again
+			function getRandom(c) {
+				let r = Math.floor(Math.random() * games[level]);
+				if (c.includes(r)) {
+					let n = 0;
+					for (let i of c) {
+						if (i == r) {
+							n++;
+						}
+					}
+					
+					if (n == 2) {
+						r = getRandom(c);
+					}
+				}
+
+				return r;
+			}
+			
+			// Remove the 'selected' class, the selected class show the back of the card
+			function removeClass(selecteds) {
+				for (let i of selecteds) {
+					i.classList.remove('selected');
+				}
+			}
+			
+			// Count and show the time
+			function countingTime() {
+				let t = '';
+				if (ms == 99) {
+					secs += 1;
+					ms = 0;
+				} else {
+					ms += 1;
+				}
+				
+				if (secs <= 9) {
+					t = '0' + secs + ':';
+				} else {
+					t = secs + ':';
+				}
+				if (ms <= 9) {
+					t += '0' + ms;
+				} else {
+					t += ms;
+				}
+				
+				curTime.innerHTML = t;
+			}
+			
+			function getScores(scores, th) {
+				console.log(th);
+				let time = [secs, ms];
+				
+				if (scores.length == 0) {
+					scores.push(time);
+					
+					th.children[1].innerHTML = time;
+					return scores;
+				}
+				
+				for (let i = 0, n = scores.length; i < n; i++) {
+					console.log(i);
+					// If the current time is the best score, put into the array
+					if (time[0] < scores[i][0]) {
+						return foo(scores, time, i, th);
+					}
+					if (time[0] == scores[i][0]) {
+						if (time[1] < scores[i][1]) {
+							return foo(scores, time, i, th);
+						}
+					}
+					
+					// If is the last element and the scores arent full
+					if (i == n-1 && n != 3) {
+						scores.push(time);
+
+						th.children[n+1].innerHTML = time;
+					}	
+				}
+				return scores;
+			}
+			
+			// todo remover th tdtime pq vou colocar manualmente os elementos e eles so deverao ser preenchidos
+			function foo(scores, time, i, th) {
+				let l = scores.length;
+				console.log(l, th.lastElementChild);
+				// If array is full remove the last element
+				if (l == 3) {
+					scores.pop();
+					l--;
+
+					th.lastElementChild.innerHTML = '';
+				}
+
+				let first = scores.slice(0, i);
+				let last = scores.slice(i);
+				scores = first.concat([time], last);
+				console.log(th.children[i]);
+
+				// need the +1 because the header of the row table
+				
+				for (let f = 0; f <= l; f++) {
+					th.children[f+1].innerHTML = scores[f];
+				}
+				
+				return scores;
+			}
+			
+			function gameOver() {
+				button.style.display = 'block';
+				console.log('entrou');
+				level = 0;
+				button.addEventListener('click', main);
+				
+			}
+		</script>
+	</body>
+</html>

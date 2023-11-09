@@ -10,7 +10,12 @@
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 	</head>
 	<body>
-		
+
+		<p id=title>JAVASCRIPT PAIRS GAME</p>
+		<div class="container">				
+			<span id=time></span>
+			<div class='flip-container' id=cards></div>
+		</div>
 		<div id=miniBoard>
 			<p id=title>Best three times</p>
 			<table>
@@ -41,11 +46,6 @@
 			</table>
 		</div>
 		<button id=restart>Play Again</button>
-		<div id=container>
-			<p id=title>JAVASCRIPT PAIRS GAME</p>
-			<span id=time></span>
-			<div class='flip-container' id=cards></div>
-		</div>
 		
 		<script>
 			var cards = document.getElementById('cards');
@@ -208,7 +208,6 @@
 				ctx.lineTo(30, 75);
 				ctx.lineTo(150, 15);
 				
-				//ctx.fillStyle = '#a19fae';
 				ctx.fillStyle = '#5F8E99';
 				ctx.fill();
 				

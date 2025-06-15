@@ -32,6 +32,8 @@ body {
     font-weight: normal;
     font-size: large;
     margin: 1px;
+    padding: 5px;
+    width: 100%;
     background-color: darkgray;
 }
 
@@ -42,7 +44,6 @@ body {
     width: 100%;
     height: auto;
     border: solid 1px green;
-    margin:
     padding: 5px;
     background-color: gray;
 }

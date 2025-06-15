@@ -20,31 +20,39 @@
         </div>
     </header>
 
-    <section>
+    <section class="main">
         <div>
             <p>Quais temas voce prefere?</p>
-            <ul>
-                <li>Romance</li>
-                <li>Terror</li>
-                <li>Comedia</li>  
-            </ul> 
+            <form>
+                <input type="checkbox" id="romanceForm">
+                <label id="romanceForm">Romance</label>
+                <input type="checkbox" id="terrorForm">
+                <label id="terrorForm">Terror</label>
+                <input type="checkbox" id="comediaForm">
+                <label id="comediaForm">Comedia</label>  
+            </form> 
         </div>
         <div>
             <p>Que estado voce prefere?</p>
-            <ul>
-                <li>Postando episodios</li>
-                <li>Finalizada</li>
-            </ul> 
+            <form>
+                <input type="checkbox" id="ongoing">
+                <label id="ongoing">Postando episodios</label>
+                <input type="checkbox" id="finished">
+                <label id="finished">Finalizada</label>
+            </form> 
         </div>
         <div>
             <p>Qual tamanho prefere?</p>
-            <ul>
-                <li>Series curtas</li>
-                <li>Series longas</li>
-                <li>Lancamentos</li>
-            </ul> 
+            <form action="formAction.html" target="_self">
+                <input type="checkbox" id="short">
+                <label id="short">Series curtas</label>
+                <input type="checkbox" id="long">
+                <label id="long">Series longas</label>
+                <input type="checkbox" id="new">
+                <label id="new">Lancamentos</label>
+            </form> 
         </div>
-        <button>Enviar</button>
+        <button type="submit">Enviar</button>
     </section>
 </body>
 </html>

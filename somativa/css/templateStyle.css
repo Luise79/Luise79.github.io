@@ -33,8 +33,13 @@ header {
     justify-content: space-evenly;
 }
 
+.itemCabecalho > * {
+    text-decoration: none;
+}
+
 #titleLogo {
     font-size: medium;
+    margin: 0;
 }
 
 

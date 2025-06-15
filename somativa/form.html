@@ -8,25 +8,45 @@
     <title>Title</title>
 </head>
 <body>
-    <header>
+    <div class="navbar">
         <div class="cabecalho">
-            <div class="itemCabecalho">
-                <a href="index.html" target="_self">
-                    <span id="imageLogo" class="itemLogo">logo</span>
+            <a href="index.html" target="_self">
+                <div class="itemCabecalho">
+                    <img src="images/logoLivro.jpg" id="imageLogo" class="itemLogo">
                     <p id="titleLogo" class="itemLogo">Nome do site</p>
-                </a>
-            </div>
+                </div>
+            </a>
             <div class="itemCabecalho">
-                <span class="itemCabecalhoFim">Login</span>
-                <div class="itemCabecalhoFim">menu</div>
+                <span id="login" class="itemCabecalhoFim" type="button">Login</span>
+                <a href="about.html" id="about" class="itemCabecalhoFim">About</a>
             </div>
         </div>
-    </header>
+    </div>
 
-    <section class="main">
-        <div>
-            <p>Quais temas voce prefere?</p>
+    <div id="loginTab">
+        <header>
+            <span id="closetab">X</span>
+        </header>
+        <div class="groupFormLogin">
+            <p>Login</p>
             <form>
+                <label>Username:</label><br>
+                <input type="text" class="inputText" placeholder="Username"><br>
+                <label>Password</label><br>
+                <input type="password" class="inputText" placeholder="Password"><br>
+                <button id="buttonLogin" type="input">Logar</button>
+            </form>
+        </div>
+    </div>
+
+    <section id="loginTab" class="formTab">
+        <header>
+            <span id="closetab">X</span>
+        </header>
+        <div class="groupFormLogin">
+            <p>Descubra seus recomendados</p>
+            <form>
+                <p>Quais temas voce prefere?</p>
                 <input type="checkbox" id="romanceForm">
                 <label id="romanceForm">Romance</label>
                 <input type="checkbox" id="terrorForm">

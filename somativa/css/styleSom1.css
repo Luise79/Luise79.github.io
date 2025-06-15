@@ -5,11 +5,18 @@ body {
 
 .cabecalho {
     display: flex;
+    flex-direction: row;
+    align-items: center;
     background-color: darkgray;
 }
 
-#itemCabecalho {
+.itemCabecalho {
     padding: 3px;
+    justify-content: space-around;
+}
+
+#titleLogo {
+    font-size: medium;
 }
 
 .livros {

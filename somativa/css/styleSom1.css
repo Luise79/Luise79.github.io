@@ -55,10 +55,11 @@ header {
     display: flex;  
     flex-direction: row;
     justify-content: space-evenly;                                                           
-    width: 100%;
+    width: auto;
     height: 200px;
     border: solid 1px green;
     padding: 5px;
+    overflow-x: auto;
 }
 
 .livro {

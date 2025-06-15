@@ -22,7 +22,7 @@ header {
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    background-color: rgb(32, 32, 32);
+    background-color: rgb(255 197 197);
 }
 
 .itemCabecalho {

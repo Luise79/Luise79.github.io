@@ -43,16 +43,17 @@
         </div>
         <div>
             <p>Qual tamanho prefere?</p>
-            <form action="formAction.html" target="_self">
-                <input type="checkbox" id="short">
-                <label id="short">Series curtas</label>
+            <form action="formAction.html" target="_self" method="get" aria-required="true">
+                <label id="short">Series curtas
+                    <input type="checkbox" id="short">
+                </label>
                 <input type="checkbox" id="long">
                 <label id="long">Series longas</label>
                 <input type="checkbox" id="new">
                 <label id="new">Lancamentos</label>
+                <button type="submit">Enviar</button>
             </form> 
         </div>
-        <button type="submit">Enviar</button>
     </section>
 </body>
 </html>

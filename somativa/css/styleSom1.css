@@ -91,6 +91,7 @@ header {
     margin: 1px;
     padding: 1px;
     min-width: fit-content;
+    width: 140px;
 }
 
 #buttonRecomendados {

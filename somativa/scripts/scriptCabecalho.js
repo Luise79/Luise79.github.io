@@ -7,6 +7,7 @@ document.getElementById("closetab").addEventListener("click", function() {
 });
 
 document.getElementById("buttonLogin").addEventListener("click", function() {
+    document.getElementById("loginTab").style.background-color = "red";
     console.log("deu");
     alert("Não é possível fazer o login no momento. Por favor, volte mais tarde!");
 })

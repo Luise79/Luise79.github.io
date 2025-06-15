@@ -1,22 +1,36 @@
+:root {
+    --mainColor: darkgray;
+}
+
 body {
     margin: 0;
 }
 
 .main {
+    background-color: var(--mainColor);
     margin-inline: 5%;
-    margin-top: 50px;
+    margin-top: 0px;
+}
+
+header {
+    position: sticky;
+    top: 0;
 }
 
 .cabecalho {
     display: flex;
     flex-direction: row;
     align-items: center;
-    background-color: darkgray;
+    justify-content: space-between;
+    background-color: rgb(32, 32, 32);
 }
 
 .itemCabecalho {
-    padding: 3px;
-    justify-content: space-around;
+    padding: 5px;
+    margin: 5px 30px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
 }
 
 #titleLogo {
@@ -34,7 +48,6 @@ body {
     margin: 1px;
     padding: 5px;
     width: 100%;
-    background-color: darkgray;
 }
 
 .livros {
@@ -42,10 +55,9 @@ body {
     flex-direction: row;
     justify-content: space-evenly;                                                           
     width: 100%;
-    height: auto;
+    height: 200px;
     border: solid 1px green;
     padding: 5px;
-    background-color: gray;
 }
 
 .livro {
@@ -53,7 +65,7 @@ body {
     flex-direction: column;
     justify-content: flex-start;
     width: 140px;
-    height: 200px;
+    height: auto;
     padding: 2px;
     margin: 5px;
     background-color: #bfbfbf;;
@@ -78,6 +90,5 @@ body {
 }
 
 #buttonRecomendados {
-    display: block;
-    margin-inline: auto;
+    margin: auto;
 }

@@ -1,6 +1,7 @@
 :root {
     --mainColor: darkgray;
-    --pink: rgb(242 101 158 / 25%);
+    --lightPink: rgb(255 193 218);/* rgb(242 101 158 / 25%);*/
+    --pink: rgb(255 167 202);
     --colorLetter: #2f2f2f;
 }
 
@@ -27,7 +28,7 @@ body {
     align-items: center;
     justify-content: space-between;
     padding: 5px;
-    background-color: var(--pink);
+    background-color: var(--lightPink);
 }
 
 .cabecalho > * {
@@ -116,14 +117,18 @@ span#login:hover {
     margin-bottom: 15px;
 }
 
+form .question {
+    margin: 20px 0;
+}
+
 .inputText {
     border-radius: 5px;
     border: 1px solid gray;
     padding: 5px;
 }
 
-#buttonLogin {
-    background-color: rgb(242 101 158 / 25%);
+.buttonForm {
+    background-color: var(--lightPink);
     border-radius: 5px;
     border: 1px ridge white;
     box-sizing: border-box;
@@ -139,7 +144,39 @@ span#login:hover {
     width: 450px;
 }
 
+.containerCheckbox {
+    display: block;
+    position: relative;
+    padding: 1px 0px 4px 25px;
+    margin-bottom: 0px;
+    cursor: pointer;
+    font-size: medium;
 
+}
+
+.containerCheckbox:hover input ~ .checkmark {
+    background-color: #ccc;    
+}
+
+.containerCheckbox input:checked ~ .checkmark {
+  background-color: var(--pink);
+}
+
+
+.checkmark {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 20px;
+    height: 20px;
+    border-radius: 7px;
+    background-color: #eee;
+}
+
+.hideCheckbox {
+    display: none;
+}
 
 
 

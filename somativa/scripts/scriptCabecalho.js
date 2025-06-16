@@ -4,6 +4,7 @@ document.getElementById("login").addEventListener("click", function() {
 
 document.getElementById("closetab").addEventListener("click", function() {
     document.getElementById("loginTab").style.display = "none";
+    document.getElementsByClassName("formTab")[0].style.display = "none";
 });
 
 document.getElementById("buttonLogin").addEventListener("click", function() {

@@ -17,72 +17,61 @@
                 </div>
             </a>
             <div class="itemCabecalho">
-                <span id="login" class="itemCabecalhoFim" type="button">Login</span>
+                <a href="login.html" id="login" class="itemCabecalhoFim">Login</a>
                 <a href="about.html" id="about" class="itemCabecalhoFim">About</a>
             </div>
         </div>
     </div>
 
-    <div id="loginTab">
-        <header>
-            <span id="closetab">X</span>
-        </header>
-        <div class="groupFormLogin">
-            <p>Login</p>
-            <form>
-                <label>Username:</label><br>
-                <input type="text" class="inputText" placeholder="Username"><br>
-                <label>Password</label><br>
-                <input type="password" class="inputText" placeholder="Password"><br>
-                <button id="buttonLogin" type="input">Logar</button>
-            </form>
-        </div>
-    </div>
 
     <section id="formRecomendados" class="formTab">
         <header>
-            <span id="closetab">X</span>
+            <span id="formRecomendadosX" class="closetab">X</span>
         </header>
         <div class="groupFormLogin">
             <p class="formTitle">Descubra seus recomendados</p>
             <form action="formAction.html" target="_self" method="get" aria-required="true">
-                <p class="question">Quais temas voce prefere?</p>
-                <label class="containerCheckbox">Romance
-                    <input type="checkbox" class="hideCheckbox">
-                    <span class="checkmark"></span>
-                </label><br>
-                <label class="containerCheckbox">Terror
-                    <input type="checkbox" class="hideCheckbox" id="">
-                    <span class="checkmark"></span>
-                </label><br>
-                <label class="containerCheckbox">Comedia
-                    <input type="checkbox" class="hideCheckbox" id="romanceForm">
-                    <span class="checkmark"></span>
-                </label>
-
-                <p class="question">Que estado voce prefere?</p>
-                <label class="containerCheckbox">Postando episodios
-                    <input type="checkbox" class="hideCheckbox">
-                    <span class="checkmark"></span>
-                </label>
-                <label class="containerCheckbox">Finalizada
-                    <input type="checkbox" class="hideCheckbox">
-                    <span class="checkmark"></span>
-                </label>
-
-                <p class="question">Qual tamanho prefere?</p>
-                <label class="containerCheckbox">Series curtas
-                    <input type="checkbox" class="hideCheckbox">
-                    <span class="checkmark"></span>
-                </label>
-                <label class="containerCheckbox">Series longas
-                    <input type="checkbox" class="hideCheckbox">
-                    <span class="checkmark"></span>
-                </label>
-                <label class="containerCheckbox">Lançamentos
-                    <input type="checkbox" class="hideCheckbox">
-                    <span class="checkmark"></span>
-                </label>
+                <div id="q1">
+                    <p class="question">Quais temas voce prefere?</p>
+                    <label class="containerCheckbox">Romance
+                        <input type="checkbox" class="hideCheckbox">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="containerCheckbox">Terror
+                        <input type="checkbox" class="hideCheckbox" id="">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="containerCheckbox">Comedia
+                        <input type="checkbox" class="hideCheckbox" id="romanceForm">
+                        <span class="checkmark"></span>
+                    </label>
+                </div>
+                <div id="q2">
+                    <p class="question">Que estado voce prefere?</p>
+                    <label class="containerCheckbox">Postando episodios
+                        <input type="checkbox" class="hideCheckbox">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="containerCheckbox">Finalizada
+                        <input type="checkbox" class="hideCheckbox">
+                        <span class="checkmark"></span>
+                    </label>
+                </div>
+                <div id="q3">
+                    <p class="question">Qual tamanho prefere?</p>
+                    <label class="containerCheckbox">Series curtas
+                        <input type="checkbox" class="hideCheckbox">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="containerCheckbox">Series longas
+                        <input type="checkbox" class="hideCheckbox">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="containerCheckbox">Lançamentos
+                        <input type="checkbox" class="hideCheckbox">
+                        <span class="checkmark"></span>
+                    </label>
+                </div>
                 <button class="buttonForm" id="buttonRecomendados" type="input">Ver resultado</button>
 
             </form> 

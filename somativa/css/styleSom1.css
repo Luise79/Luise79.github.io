@@ -1,15 +1,28 @@
+:root {
+    --mainColor: darkgray;
+    --lightPink: rgb(255 193 218);/* rgb(242 101 158 / 25%);*/
+    --pink: rgb(255 167 202);
+    --colorLetter: #2f2f2f;
+}
+
+#main {
+    width: 80%;
+}
+
+.container {
+    padding: 30px;
+}
 
 .containerLivros {
     display: flex;
     flex-direction: column;
-    margin-bottom: 20px;
 }
 
 .titleGenero {
     font-weight: normal;
     font-size: large;
-    margin: 1px;
-    padding: 5px;
+    margin: 20px 0 0 0;
+    padding: 5px 0px;
     width: 100%;
 }
 
@@ -18,11 +31,15 @@
     flex-direction: row;
     justify-content: space-evenly;                                                           
     width: auto;
-    height: 200px;
-    border: solid 1px green;
+    height: 300px;
+    border: solid 1px #a3a3a3;
     box-sizing: border-box;
     padding: 5px;
     overflow-x: auto;
+}
+
+#recomendados {
+    height: 150px;
 }
 
 .livro {
@@ -32,32 +49,53 @@
     width: 140px;
     height: auto;
     padding: 2px;
-    margin: 5px;
-    background-color: #bfbfbf;;
+    margin: 10px;
+}
+
+.card {
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+}
+
+.card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
 }
 
 .fotoCapa {
     width: 100%;
-    height: 40%;
-    margin-bottom: 15px;
-    background-color: red;
+    height: 55%;
+    background-color: var(--pink);
+}
+
+.imageCapaLivro {
+    width: 100%;
+    height: 100%;
+}
+
+.textLivro {
+    margin-inline: 5px;
 }
 
 .titleLivro {
     margin-bottom: 15px;
-    margin: 1px;
-    padding: 1px;
+    margin: 5px 0;
+    padding: 5px 0;
+    font-size: large;
+    font-weight: normal;
 }
 
 .descricaoLivro {
     margin: 1px;
     padding: 1px;
-    min-width: fit-content;
-    width: 140px;
+    max-width: 140px;
+    font-size: medium;
+    text-overflow: ellipsis;
+    overflow: hidden;
+
 }
 
 #buttonRecomendados {
-    margin: auto;
+    padding: 10px;
 }
 
 #changePage {

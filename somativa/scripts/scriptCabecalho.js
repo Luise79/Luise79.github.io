@@ -1,3 +1,12 @@
+/* Quando envio o formulario e aperto o botao da pagina pra voltar o quadrado selecionado anteriormente
+ permanece pintado porem sem estar realmente selecionado, 
+ logo se recarregar a pagina ele volta ao normal e evita confusao se está selecionado ou nao */
+var perfEntries = performance.getEntriesByType("navigation");
+if (perfEntries[0].type === "back_forward") {
+    location.reload();
+}
+
+/*
 document.getElementById("login").addEventListener("click", function() {
     location.replace("login.html");
 });
@@ -7,6 +16,7 @@ document.getElementById("loginX").addEventListener("click", function() {
 });
 
 // so esse elemento da null
+
 document.getElementById("formRecomendadosX").addEventListener("click", function() {
     location.replace("index.html");
 });
@@ -14,8 +24,42 @@ document.getElementById("formRecomendadosX").addEventListener("click", function(
 document.getElementById("buttonLogin").addEventListener("click", function() {
     alert("Não é possível fazer o login no momento. Por favor, volte mais tarde!");
 });
+*/
 
-document.getElementById("buttonRecomendados").addEventListener("click", function() {
-    console.log(1);
-    
-});
+const checkboxRecomendados = document.querySelectorAll(".containerCheckbox");
+for (var i = 0; checkboxRecomendados.length > i; i++) {
+    let justOnce = true;
+
+    checkboxRecomendados[i].addEventListener("click", function() {
+        if (justOnce) {
+            justOnce = false;
+        } else {
+            justOnce = true;
+            return;
+        }
+
+        this.ariaChecked = this.ariaChecked == "true" ? "false" : "true";
+    });
+}
+
+function validateForm() {
+    const qs = document.getElementsByClassName("questions");
+    let answeredqs = [];
+    for (let q of qs) {
+        let qAnswered = false;
+        for (let label of q.getElementsByTagName("label")) {
+
+            if (label.ariaChecked == "true") {
+                answeredqs.push(label.getAttribute("value"));
+                qAnswered = true;
+            }
+        }
+        if (!qAnswered) {
+            alert("Por favor, selecione alguma resposta!");
+            return false;
+        }
+        console.log(answeredqs);
+    }
+}
+
+document.getElementById("formRecomendados").addEventListener("submit", validateForm);

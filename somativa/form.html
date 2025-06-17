@@ -24,55 +24,55 @@
     </div>
 
 
-    <section id="formRecomendados" class="formTab">
+    <section id="formTabRecomendados" class="formTab">
         <header>
             <span id="formRecomendadosX" class="closetab">X</span>
         </header>
         <div class="groupFormLogin">
             <p class="formTitle">Descubra seus recomendados</p>
-            <form action="formAction.html" target="_self" method="get" aria-required="true">
-                <div id="q1">
-                    <p class="question">Quais temas voce prefere?</p>
-                    <label class="containerCheckbox">Romance
+            <form id="formRecomendados" action="formAction.html" target="_self" method="get" onsubmit="return validateForm()">
+                <div class="questions" id="q1">
+                    <p class="titleQuestion">Quais temas voce prefere?</p>
+                    <label name="tema" value="romance" class="containerCheckbox" aria-checked="false">Romance
                         <input type="checkbox" class="hideCheckbox">
                         <span class="checkmark"></span>
                     </label>
-                    <label class="containerCheckbox">Terror
+                    <label name="tema" value="terror" class="containerCheckbox" aria-checked="false">Terror
                         <input type="checkbox" class="hideCheckbox" id="">
                         <span class="checkmark"></span>
                     </label>
-                    <label class="containerCheckbox">Comedia
+                    <label name="tema" value="comedia" class="containerCheckbox">Comedia
                         <input type="checkbox" class="hideCheckbox" id="romanceForm">
                         <span class="checkmark"></span>
                     </label>
                 </div>
-                <div id="q2">
-                    <p class="question">Que estado voce prefere?</p>
-                    <label class="containerCheckbox">Postando episodios
+                <div class="questions" id="q2">
+                    <p class="titleQuestion">Que estado voce prefere?</p>
+                    <label name="estado" value="ongoing" class="containerCheckbox">Postando episodios
                         <input type="checkbox" class="hideCheckbox">
                         <span class="checkmark"></span>
                     </label>
-                    <label class="containerCheckbox">Finalizada
-                        <input type="checkbox" class="hideCheckbox">
-                        <span class="checkmark"></span>
-                    </label>
-                </div>
-                <div id="q3">
-                    <p class="question">Qual tamanho prefere?</p>
-                    <label class="containerCheckbox">Series curtas
-                        <input type="checkbox" class="hideCheckbox">
-                        <span class="checkmark"></span>
-                    </label>
-                    <label class="containerCheckbox">Series longas
-                        <input type="checkbox" class="hideCheckbox">
-                        <span class="checkmark"></span>
-                    </label>
-                    <label class="containerCheckbox">Lançamentos
+                    <label name="estado" value="finished" class="containerCheckbox">Finalizada
                         <input type="checkbox" class="hideCheckbox">
                         <span class="checkmark"></span>
                     </label>
                 </div>
-                <button class="buttonForm" id="buttonRecomendados" type="input">Ver resultado</button>
+                <div class="questions" id="q3">
+                    <p class="titleQuestion">Qual tamanho prefere?</p>
+                    <label name="tamanho" value="shorts" class="containerCheckbox">Series curtas
+                        <input type="checkbox" class="hideCheckbox">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label name="tamanho" value="long" class="containerCheckbox">Series longas
+                        <input type="checkbox" class="hideCheckbox">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label name="tamanho" value="new" class="containerCheckbox">Lançamentos
+                        <input type="checkbox"   class="hideCheckbox">
+                        <span class="checkmark"></span>
+                    </label>
+                </div>
+                <input class="buttonForm" id="buttonRecomendados" type="submit" value="Ver resultado">
 
             </form> 
         </div>

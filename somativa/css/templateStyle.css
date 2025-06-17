@@ -117,7 +117,7 @@ span#login:hover {
     margin-bottom: 15px;
 }
 
-form .question {
+form .titleQuestion {
     margin: 20px 0;
 }
 
@@ -140,7 +140,7 @@ form .question {
 
 
 
-#formRecomendados {
+#formTabRecomendados {
     display: block;
     position: relative;
     width: 450px;
@@ -179,7 +179,7 @@ form .question {
 }
 
 .hideCheckbox {
-    display: none;
+    visibility: hidden;
 }
 
 

@@ -6,6 +6,10 @@ if (perfEntries[0].type === "back_forward") {
     location.reload();
 }
 
+document.addEventListener("DOMContentLoaded", function() {
+    var l = document.getElementsByClassName("livro")[0].getAttribute("value");
+});
+
 /*
 document.getElementById("login").addEventListener("click", function() {
     location.replace("login.html");
@@ -60,6 +64,15 @@ function validateForm() {
         }
         console.log(answeredqs);
     }
+
+    findRecomendados(answeredqs);
 }
 
 document.getElementById("formRecomendados").addEventListener("submit", validateForm);
+
+function findRecomendados(formValues) {
+    for (let formValue of formValues) {
+        console.log(l);
+        console.log(formValue);
+    }
+}

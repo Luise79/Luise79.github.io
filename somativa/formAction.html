@@ -23,8 +23,16 @@
         </div>
     </div>
 
-    <section>
-        hello
+    <section class="formTab" id="main">
+        Encontrando os livros ideais pra você...
     </section>
+
+    <script>
+        const timeToRedirect = setTimeout(changePage, 5000);
+
+        function changePage() {
+            location.replace("index.html");
+        }
+    </script>
 </body>
 </html>

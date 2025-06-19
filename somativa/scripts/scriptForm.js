@@ -46,6 +46,7 @@ function validateForm() {
         console.log(answeredqs);
     }
 
+    localStorage.setItem("answersForm", answeredqs);
     findRecomendados(answeredqs);
 }
 
@@ -53,24 +54,29 @@ document.getElementById("formRecomendados").addEventListener("submit", validateF
 
 function findRecomendados(formValues) {
     for (let formValue of formValues) {
-        console.log(l);
-        console.log(formValue);
+        //console.log(formValue);
     }
 }
 
-
+/*
 function getBooks() {
     var romances = localStorage.getItem("livrosRomance");
     var terrores = localStorage.getItem("livrosTerror");
     var acaos = localStorage.getItem("livrosAcao");
     var filosofias = localStorage.getItem("livrosFilosofia");
+    const livros = localStorage.getItem("todosLivros");
+    console.log(livros[0]);
 
-    console.log(romances.innerHTMl);
-    for (let i = 0; i > romances.getElementsByClassName("livro").length; i++) {
-        let = romances.getElementsByClassName("livro")[i];
+    for (let l of livros) {
+        console.log(l);
+    }
+
+    //console.log(romances);
+    for (let i = 0; i > livros.length; i++) {
+        let livro = livros[i];
         console.log(livro);
-        let classes = livro.getAttribute("class");
-        classes = classes.split(" ");
+        let classes = livro.getAttribute("class").split(" ");
+        console.log(classes)
     }
     console.log(5678);
 }
@@ -78,3 +84,4 @@ function getBooks() {
 getBooks();
 // document.getElementById('romance').getElementsByClassName("livro")[0].getAttribute("class")
 
+*/

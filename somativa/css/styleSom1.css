@@ -36,7 +36,12 @@
     border: solid 1px #a3a3a3;
     box-sizing: border-box;
     padding: 5px;
+    margin: 2px;
     overflow-x: auto;
+}
+
+#changePage {
+    text-decoration: none;
 }
 
 #recomendados {
@@ -50,7 +55,7 @@
     width: 140px;
     height: auto;
     padding: 2px;
-    margin: 10px;
+    margin: 5px 10px;
 }
 
 .card {
@@ -75,6 +80,9 @@
 
 .textLivro {
     margin-inline: 5px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding: 2px;
 }
 
 .titleLivro {
@@ -88,7 +96,7 @@
 .descricaoLivro {
     margin: 1px;
     padding: 1px;
-    max-width: 140px;
+    width: 140px;
     font-size: medium;
     text-overflow: ellipsis;
     overflow: hidden;
@@ -96,9 +104,18 @@
 }
 
 #buttonRecomendados {
+    display: block;
     padding: 10px;
 }
 
 #changePage {
     margin: auto;
+}
+
+
+
+
+
+#descricaoAbout {
+    overflow-wrap: break-word;
 }

@@ -11,6 +11,7 @@ document.getElementById("formRecomendadosX").addEventListener("click", () => {
     location.replace("index.html");
 });
 
+// Vai marcar verificado se a resposta for clicada
 const checkboxRecomendados = document.querySelectorAll(".containerCheckbox");
 for (var i = 0; checkboxRecomendados.length > i; i++) {
     let justOnce = true;
@@ -27,6 +28,7 @@ for (var i = 0; checkboxRecomendados.length > i; i++) {
     });
 }
 
+// Verifica se foi dada pelo menos uma resposta pra pergunta, salva as respostas para análise posterior
 function validateForm() {
     const qs = document.getElementsByClassName("questions");
     let answeredqs = [];
@@ -43,45 +45,12 @@ function validateForm() {
             alert("Por favor, selecione alguma resposta!");
             return false;
         }
-        console.log(answeredqs);
     }
 
     localStorage.setItem("answersForm", answeredqs);
-    findRecomendados(answeredqs);
+
+    insertLivrosRecomendados();
 }
 
 document.getElementById("formRecomendados").addEventListener("submit", validateForm);
 
-function findRecomendados(formValues) {
-    for (let formValue of formValues) {
-        //console.log(formValue);
-    }
-}
-
-/*
-function getBooks() {
-    var romances = localStorage.getItem("livrosRomance");
-    var terrores = localStorage.getItem("livrosTerror");
-    var acaos = localStorage.getItem("livrosAcao");
-    var filosofias = localStorage.getItem("livrosFilosofia");
-    const livros = localStorage.getItem("todosLivros");
-    console.log(livros[0]);
-
-    for (let l of livros) {
-        console.log(l);
-    }
-
-    //console.log(romances);
-    for (let i = 0; i > livros.length; i++) {
-        let livro = livros[i];
-        console.log(livro);
-        let classes = livro.getAttribute("class").split(" ");
-        console.log(classes)
-    }
-    console.log(5678);
-}
-
-getBooks();
-// document.getElementById('romance').getElementsByClassName("livro")[0].getAttribute("class")
-
-*/

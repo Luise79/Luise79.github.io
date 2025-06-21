@@ -1,64 +1,63 @@
 totGeneros = ["romance", "terror", "acao", "filosofia"]
 
 const answersForm = localStorage.getItem("answersForm").split(",");
-console.log(answersForm);
-
-const generosRecomendados = checkIsGenero(answersForm);
 const livros = document.querySelectorAll(".livro");
 const divRecomendados = document.getElementById("recomendados");
 
-for (let livro of livros) {
-    console.log(livro);
-    let classes = livro.getAttribute("class").split(" ");
-    let generos = checkIsGenero(classes);
-    console.log("livr", generos, "rec", generosRecomendados);
+//deleteLivrosRecomendados();
 
-    for (let g of generos) {
-        console.log(g);
 
-        for (let answer of answersForm) {
-            console.log(answer);
-            if (answer == g) {
-                let newLivro = livro.cloneNode(true);
-                divRecomendados.appendChild(newLivro);
+// Insere os livros com os generos escolhidos pelo usuario na aba de recomendados
+function insertLivrosRecomendados() {
+    const generosEscolhidos = checkIsGenero(answersForm);
+
+    for (let livro of livros) {
+        let classes = livro.getAttribute("class").split(" ");
+        let generoLivroCatalogo = checkIsGenero(classes);
+
+        for (let generoEscolhido of generosEscolhidos) {
+            if (generoLivroCatalogo[0] === generoEscolhido) {
+                let copiaLivro = livro.cloneNode(true);
+                divRecomendados.appendChild(copiaLivro);
+            }    
+        }
+    }
+
+    if (divRecomendados.querySelectorAll(".livro").length > 1) {
+        console.log(11, divRecomendados, divRecomendados.querySelectorAll(".livro").length);
+        document.getElementById("changePage").style.display = "none";
+        divRecomendados.style.height = "300px";
+    }
+}
+
+// Deleta o que nao for genero de livro na resposta do usuario dada pelo formulario
+function checkIsGenero(listGeneros) {
+    let newlist = [];
+    for (let i = 0; listGeneros.length >= i; i++) {
+        for (let genero of totGeneros) {
+            if (genero === listGeneros[i]) {
+                newlist.push(genero);
+                break;
             }
         }
     }
+    return newlist;
 }
 
+//insertLivrosRecomendados();
 
-function checkIsGenero(listGeneros) {
-    let f = 0;
-    for (let i = 0; listGeneros.length >= i; i++) {
-        if (!totGeneros.includes(listGeneros[f])) {
-            listGeneros.splice(f, 1);
-            console.log(listGeneros);
-        } else {
-            f++;
-        }
+
+
+function deleteLivrosRecomendados() {
+    document.getElementById("buttonRecomendados").style.display = "block";
+    divRecomendados.style.height = "150px";
+    localStorage.removeItem("answersForm");
+    /*
+    const livros = divRecomendados.querySelectorAll(".livro");
+    livros.splice(0);
+    */
+    for (let livro of divRecomendados.querySelectorAll(".livro")) {
+        divRecomendados.removeChild(livro);
+        console.log(divRecomendados, divRecomendados.querySelectorAll(".livro").length);
     }
-    return listGeneros;
 }
-
-/*
-localStorage.setItem('livrosRomance', document.getElementById('romance').innerHTML);
-
-localStorage.setItem('livrosTerror', document.getElementById('terror').innerHTML);
-
-localStorage.setItem('livrosAcao', document.getElementById('acao').innerHTML);
-
-localStorage.setItem('livrosFilosofia', document.getElementById('filosofia').innerHTML);
-
-localStorage.setItem('todosLivros', document.querySelectorAll(".livro"));
-
-const livros3 = localStorage.getItem('todosLivros');
-const livros = Array.from(document.querySelectorAll(".livro"));
-const livros2 = document.querySelectorAll(".livro");
-
-console.log(livros);
-console.log(livros2);
-console.log(livros3);
-
-livros.forEach(livro => console.log(livro));
-
-*/

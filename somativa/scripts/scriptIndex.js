@@ -4,8 +4,6 @@ const answersForm = localStorage.getItem("answersForm").split(",");
 const livros = document.querySelectorAll(".livro");
 const divRecomendados = document.getElementById("recomendados");
 
-//deleteLivrosRecomendados();
-
 
 // Insere os livros com os generos escolhidos pelo usuario na aba de recomendados
 function insertLivrosRecomendados() {
@@ -44,10 +42,6 @@ function checkIsGenero(listGeneros) {
     return newlist;
 }
 
-//insertLivrosRecomendados();
-
-
-
 function deleteLivrosRecomendados() {
     document.getElementById("buttonRecomendados").style.display = "block";
     divRecomendados.style.height = "150px";
@@ -61,3 +55,8 @@ function deleteLivrosRecomendados() {
         console.log(divRecomendados, divRecomendados.querySelectorAll(".livro").length);
     }
 }
+
+
+deleteLivrosRecomendados();
+
+//insertLivrosRecomendados();

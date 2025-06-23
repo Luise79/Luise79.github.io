@@ -48,8 +48,6 @@ function validateForm() {
     }
 
     localStorage.setItem("answersForm", answeredqs);
-
-    insertLivrosRecomendados();
 }
 
 document.getElementById("formRecomendados").addEventListener("submit", validateForm);

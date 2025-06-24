@@ -7,7 +7,6 @@ if (perfEntries[0].type === "back_forward") {
 }
 
 document.getElementById("formRecomendadosX").addEventListener("click", () => {
-    console.log("entrou");
     location.replace("index.html");
 });
 
@@ -49,6 +48,3 @@ function validateForm() {
 
     localStorage.setItem("answersForm", answeredqs);
 }
-
-document.getElementById("formRecomendados").addEventListener("submit", validateForm);
-

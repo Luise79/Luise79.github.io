@@ -46,17 +46,13 @@ function deleteLivrosRecomendados() {
     document.getElementById("buttonRecomendados").style.display = "block";
     divRecomendados.style.height = "150px";
     localStorage.removeItem("answersForm");
-    /*
-    const livros = divRecomendados.querySelectorAll(".livro");
-    livros.splice(0);
-    */
+
     for (let livro of divRecomendados.querySelectorAll(".livro")) {
         divRecomendados.removeChild(livro);
-        console.log(divRecomendados, divRecomendados.querySelectorAll(".livro").length);
     }
 }
 
 
-deleteLivrosRecomendados();
+insertLivrosRecomendados();
 
-//insertLivrosRecomendados();
+//deleteLivrosRecomendados();

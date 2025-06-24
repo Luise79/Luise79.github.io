@@ -1,0 +1,23 @@
+#descricaoAbout {
+    overflow-wrap: break-word;
+    color: var(--colorLetter);
+    text-align: justify;
+    letter-spacing: 0.3px;
+    line-height: 1.3;
+    font-size: large;
+}
+
+#tituloAbout {
+    text-align: center;
+    font-weight: normal;
+    color: black;
+    font-size: larger;
+}
+
+ul * {
+    margin-top: 10px;
+}
+
+#autoriaAbout {
+    margin-top: 50px;
+}

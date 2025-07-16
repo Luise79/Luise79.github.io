@@ -49,6 +49,23 @@ body {
     padding: 5px;
 }
 
+.dropDownMenu {
+    right: -40px;
+    padding: 0;
+}
+
+#buttonSuaConta {
+    background-color: inherit;
+    color: inherit;
+    border: 0;
+}
+
+.buttonMenu {
+    background-color: inherit;
+    border: 0;
+    cursor: pointer;
+}
+
 #titleLogo {
     font-size: medium;
     margin: 0;
@@ -105,16 +122,16 @@ span#login:hover {
 
 
 .groupFormLogin {
-    margin: 10px;
+    padding: 5px;
 }
 
 .groupFormLogin form {
-    margin: 15px;
+    margin-inline: 15px;
 }
 
 .groupFormLogin form > * {
     width: 100%;
-    margin-bottom: 15px;
+    margin: 0 0 15px 0;
 }
 
 form .titleQuestion {
@@ -122,6 +139,7 @@ form .titleQuestion {
 }
 
 .inputText {
+    width: 100%;
     border-radius: 5px;
     border: 1px solid gray;
     padding: 5px;
@@ -136,8 +154,13 @@ form .titleQuestion {
     padding: 5px;
 }
 
+.randomLink {
+    text-decoration: none;
+}
 
-
+.randomLink:hover {
+    text-decoration: underline;
+}
 
 
 #formTabRecomendados {
@@ -184,3 +207,137 @@ form .titleQuestion {
 
 
 
+/* Css dos containers de livro */
+#main {
+    width: 80%;
+    box-shadow: none;
+}
+
+.container {
+    padding: 30px;
+}
+
+.containerLivros {
+    display: flex;
+    flex-direction: column;
+}
+
+.titleGenero {
+    font-weight: normal;
+    font-size: large;
+    margin: 20px 0 0 0;
+    padding: 5px 0px;
+    width: 100%;
+}
+
+.livros {
+    display: flex;  
+    flex-direction: row;
+    justify-content: space-evenly;                                                           
+    width: auto;
+    height: 300px;
+    border: solid 1px #a3a3a3;
+    box-sizing: border-box;
+    padding: 5px;
+    margin: 2px;
+    overflow-x: auto;
+}
+
+.buttonsUpdate {
+    display: flex;
+    justify-content: space-between;
+    margin: 2px;
+}
+
+.buttonsUpdate  * {
+    width: 99%;
+    cursor: pointer;
+}
+
+.buttonUpdateRec {
+    background-color: var(--lightPink);
+    color: var(--colorLetter);
+    border: 0;
+    padding: 5px;
+}
+
+#novosRecomendados {
+    display: none;
+    margin-right: 1%;
+}
+
+#apagarRecomendados {
+    display: none;
+    margin-left: 1%;
+}
+
+#changePage {
+    text-decoration: none;
+    margin: auto;
+}
+
+#recomendados {
+    height: 150px;
+}
+
+.livro {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    width: 140px;
+    height: auto;
+    padding: 2px;
+    margin: 5px 10px;
+    cursor: pointer;
+}
+
+.card {
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+}
+
+.card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+.fotoCapa {
+    width: 100%;
+    height: 55%;
+    background-color: var(--pink);
+}
+
+.imageCapaLivro {
+    width: 100%;
+    height: 100%;
+}
+
+.textLivro {
+    margin-inline: 5px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding: 2px;
+}
+
+.titleLivro {
+    margin-bottom: 15px;
+    margin: 5px 0;
+    padding: 5px 0;
+    font-size: large;
+    font-weight: normal;
+}
+
+.descricaoLivro {
+    margin: 1px;
+    padding: 1px;
+    width: 140px;
+    font-size: medium;
+    text-overflow: ellipsis;
+    overflow: hidden;
+
+}
+
+#buttonRecomendados {
+    display: block;
+    padding: 10px;
+    cursor: pointer;
+}

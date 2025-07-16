@@ -6,11 +6,13 @@ if (perfEntries[0].type === "back_forward") {
     location.reload();
 }
 
-document.getElementById("formRecomendadosX").addEventListener("click", () => {
-    location.replace("index.html");
-});
+for (let x of document.querySelectorAll(".closetab")) {
+    x.addEventListener("click", () => {
+        location.replace("index.php");
+    });
+}
 
-// Vai marcar verificado se a resposta for clicada
+// Vai marcar verificado se a resposta do form for clicada
 const checkboxRecomendados = document.querySelectorAll(".containerCheckbox");
 for (var i = 0; checkboxRecomendados.length > i; i++) {
     let justOnce = true;
@@ -45,6 +47,4 @@ function validateForm() {
             return false;
         }
     }
-
-    localStorage.setItem("answersForm", answeredqs);
 }
